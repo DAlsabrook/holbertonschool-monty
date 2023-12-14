@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	char *getline_string = NULL, *token;
 	instruction_t obj;
 	stack_t *head = NULL;
-	int flag = 0, u = 0;
+	int flag = 0;
 	unsigned int line_number = 1;
 
 	if (argc != 2)
@@ -25,19 +25,23 @@ int main(int argc, char *argv[])
 	getline_string = get_input(argv[1]);
 	if (!getline_string)
 		free_exit(getline_string, head, 2);
+	printf("Getline_string %s\n", getline_string);
 	/*Find func and store in obj. Then run obj.f*/
 	token = strtok(getline_string, " ");
 	/*line_check = 1*/
 	while (token)
 	{
 		/*add the  $ back and if token = $ line_number++, line_check = 1, strtok again to advance to next command*/
-		obj.f = func_p(token, flag, u);
-		if (u == 1)
+		obj.f = func_p(token, flag);
+		if (exit_check == 1)
+		{
+			printf("In if statment\n");
+			break;
+		}
+		else if (obj.f == NULL)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-			line_number++;
-			flag = 1;
-			break;
+			continue;
 		}
 		/*line_check = 0 aka we ran a command*/
 		obj.f(&head, line_number);

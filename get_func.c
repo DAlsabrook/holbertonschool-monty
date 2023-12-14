@@ -6,7 +6,7 @@
  *
  * Return: correct function
  */
-void (*func_p(char *tok, int flag, int u))(stack_t **head, unsigned int line_number)
+void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 {
 	int i = 0;
 	instruction_t ops[] = {
@@ -15,12 +15,13 @@ void (*func_p(char *tok, int flag, int u))(stack_t **head, unsigned int line_num
 		{"pint", pint},
 		{"pop", pop},
 		{NULL, NULL}};
-	u = 0;
 	if (flag == 1)
 		tok = strtok(NULL, " ");
-	if (tok == NULL && u == 0)
+	printf("Token: %s\n", tok);
+	if (tok == NULL)
 	{
-		u = 1;
+		printf("Token was null.\n");
+		exit_check = 1;
 		return (NULL);
 	}
 	while (ops[i].opcode)
