@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
 		obj.f = get_func(token, flag);
 		if (obj.f == NULL)
 		{
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
 			line_number++;
 			flag = 1;
 			break;
