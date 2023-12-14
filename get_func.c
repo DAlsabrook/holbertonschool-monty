@@ -18,7 +18,7 @@ void (*func_p(char *tok, int flag, int u))(stack_t **head, unsigned int line_num
 	u = 0;
 	if (flag == 1)
 		tok = strtok(NULL, " ");
-	if (tok == NULL)
+	if (tok == NULL && u == 0)
 	{
 		u = 1;
 		return (NULL);
