@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	char *getline_string = NULL, *token;
 	instruction_t obj;
 	stack_t *head = NULL;
-	int flag = 0;
+	int flag = 0, u = 0;
 	unsigned int line_number = 1;
 
 	if (argc != 2)
@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 	while (token)
 	{
 		/*add the  $ back and if token = $ line_number++, line_check = 1, strtok again to advance to next command*/
-		obj.f = get_func(token, flag);
-		if (obj.f == NULL)
+		obj.f = get_func(token, flag, u);
+		if (u == 1)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
 			line_number++;

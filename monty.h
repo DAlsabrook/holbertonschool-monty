@@ -47,7 +47,7 @@ void pall(stack_t **head, unsigned int line_number);
 void push(stack_t **head, unsigned int line_number);
 char *get_input(char *file);
 char *string_clean(char *getline_string);
-void (*get_func(char *token, int flag))(stack_t **head, unsigned int line_number);
+void (*get_func(char *tok, int flag, int u))(stack_t **head, unsigned int line_number);
 void free_exit(char *getline_string, stack_t *head, int i);
 
 #endif

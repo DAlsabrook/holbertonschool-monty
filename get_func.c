@@ -6,7 +6,7 @@
  *
  * Return: correct function
  */
-void (*get_func(char *tok, int flag))(stack_t **head, unsigned int line_number)
+void (*func_p(char *tok, int flag, int u))(stack_t **head, unsigned int line_number)
 {
 	int i = 0;
 	instruction_t ops[] = {
@@ -15,12 +15,14 @@ void (*get_func(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		{"pint", pint},
 		{"pop", pop},
 		{NULL, NULL}};
-	/*use strtok to get first element and set strtok to the string in memory*/
-	/*then compare op[i].opcode to the tok*/
+	u = 0;
 	if (flag == 1)
 		tok = strtok(NULL, " ");
 	if (tok == NULL)
+	{
+		u = 1;
 		return (NULL);
+	}
 	while (ops[i].opcode)
 	{
 		if (strcmp(ops[i].opcode, tok) == 0)
