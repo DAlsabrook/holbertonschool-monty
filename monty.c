@@ -34,10 +34,7 @@ int main(int argc, char *argv[])
 		/*add the  $ back and if token = $ line_number++, line_check = 1, strtok again to advance to next command*/
 		obj.f = func_p(token, flag);
 		if (exit_check == 1)
-		{
-			printf("In if statment\n");
 			break;
-		}
 		else if (obj.f == NULL)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
