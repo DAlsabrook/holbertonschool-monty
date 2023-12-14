@@ -14,5 +14,5 @@ void pint(stack_t **head, unsigned int line_number)
 		return;
 	}
 	fprintf(stderr, "L%u: can't pint, stack empty", line_number);
-	exit_check = 1;
+	global = 1;
 }

@@ -7,45 +7,67 @@
  * Return: 0 on success
  */
 
-int exit_check = 0;
+unsigned int global = 0;
 int main(int argc, char *argv[])
 {
-	char *getline_string = NULL, *token;
+	char *getline_string = NULL, *token, *single_line, line[100];
 	instruction_t obj;
 	stack_t *head = NULL;
-	int flag = 0;
-	unsigned int line_number = 1;
+	int flag = 1, flag2 = 0;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
-	/*get each line and put into single string*/
 	getline_string = get_input(argv[1]);
 	if (!getline_string)
 		free_exit(getline_string, head, 2);
-	/*Find func and store in obj. Then run obj.f*/
-	token = strtok(getline_string, " ");
-	/*line_check = 1*/
-	while (token)
+	printf("getline: %s", getline_string);/*string = "push 1   push 2 \npush 3 pall \n   push 4    push 5 pall\0"*/
+	single_line = strtok(getline_string, "\n");
+	while (single_line)
 	{
-		/*add the  $ back and if token = $ line_number++, line_check = 1, strtok again to advance to next command*/
-		obj.f = func_p(token, flag);
-		if (exit_check == 1)
+		printf("start\n");
+		printf("Single_line check |%s|\n", single_line);
+		if (flag == 0)
+			single_line = strtok(NULL, "\n"); /*string = "push 1   push 2 \0"*/
+		/**
+		 * make a loop that itterates to \n and sends everything before that
+		 * while (getline_string[j] != "\n")
+		 * {
+		 * 	new_string[j] = getline_string[j];
+		 * 	j++;
+		 * }
+		 * j++; to get past new line
+		 * Its iterator "j" then holds its spot for the next loop
+		 */
+		printf("Single_line check |%s|\n", single_line);
+		if (single_line == NULL) /*end of getline_string*/
 			break;
-		else if (obj.f == NULL)
-		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
-			continue;
-		}
-		/*line_check = 0 aka we ran a command*/
-		obj.f(&head, line_number);
-		/*global variable exit_check 1 if needing to exit*/
-		if (exit_check == 1)
-			free_exit(getline_string, head, 2);
+		strcpy(line, single_line);
 		line_number++;
-		flag = 1;
+		printf("Line# %d\n", line_number);
+		printf("single_line: |%s|\n", line);
+		token = strtok(line, " "); /*string = "push\0"*/
+		while (flag2 != 2)
+		{
+			printf("Token: |%s|\n", token);
+			obj.f = func_p(token, flag);
+			if (global == 1)/*means end of single_line (strtok was NULL)*/
+				break;
+			else if (obj.f == NULL)
+			{
+				flag2 = 1;
+				continue;
+			}
+			obj.f(&head, line_number);
+			if (global == 1) /*global 1 if needing to exit from error*/
+				free_exit(getline_string, head, 2);
+			flag2 = 2;
+		}
+		flag2 = 0;
+		flag = 0;
 	}
 	free_exit(getline_string, head, 0);
 	return (0);

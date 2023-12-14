@@ -38,15 +38,16 @@ typedef struct instruction_s
 } instruction_t;
 
 /*Global variable*/
-extern int exit_check;
+extern unsigned int global;
 
 /*prototypes*/
 void pop(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
 void push(stack_t **head, unsigned int line_number);
+void new_line(stack_t **head, unsigned int line_number);
 char *get_input(char *file);
-char *string_clean(char *getline_string);
+char *string_clean(char *getline_string, int f);
 void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number);
 void free_exit(char *getline_string, stack_t *head, int i);
 

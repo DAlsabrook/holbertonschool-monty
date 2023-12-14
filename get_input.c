@@ -37,7 +37,7 @@ char *get_input(char *file)
 		free(single_line);
 		single_line = NULL;
 	}
-	string_clean(getline_string);
+	string_clean(getline_string, 1);
 	close(file_fd);
 	fclose(opened_file);
 	free(single_line);
@@ -49,14 +49,25 @@ char *get_input(char *file)
  *
  * Return: cleaned string
  */
-char *string_clean(char *getline_string)
+char *string_clean(char *getline_string, int f)
 {
 	int i;
 
-	for (i = 0; getline_string[i]; i++)
+	if (f == 1)
 	{
-		if (getline_string[i] == '\n' || getline_string[i] == '$')
-			getline_string[i] = ' ';
+		for (i = 0; getline_string[i]; i++)
+		{
+			if (getline_string[i] == '$')
+				getline_string[i] = ' ';
+		}
+	}
+	else if (f == 2)
+	{
+		for (i = 0; getline_string[i]; i++)
+		{
+			if (getline_string[i] == '\n')
+				getline_string[i] = ' ';
+		}
 	}
 	return (getline_string);
 }
