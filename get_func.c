@@ -12,6 +12,8 @@ void (*get_func(char *tok, int flag))(stack_t **head, unsigned int line_number)
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}};
 	/*use strtok to get first element and set strtok to the string in memory*/
 	/*then compare op[i].opcode to the tok*/

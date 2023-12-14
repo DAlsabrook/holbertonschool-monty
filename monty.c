@@ -6,6 +6,8 @@
  *
  * Return: 0 on success
  */
+
+int exit_check = 0;
 int main(int argc, char *argv[])
 {
 	char *getline_string = NULL, *token;
@@ -25,8 +27,10 @@ int main(int argc, char *argv[])
 		free_exit(getline_string, head, 2);
 	/*Find func and store in obj. Then run obj.f*/
 	token = strtok(getline_string, " ");
+	/*line_check = 1*/
 	while (token)
 	{
+		/*add the  $ back and if token = $ line_number++, line_check = 1, strtok again to advance to next command*/
 		obj.f = get_func(token, flag);
 		if (obj.f == NULL)
 		{
@@ -35,7 +39,11 @@ int main(int argc, char *argv[])
 			flag = 1;
 			break;
 		}
+		/*line_check = 0 aka we ran a command*/
 		obj.f(&head, line_number);
+		/*global variable exit_check 1 if needing to exit*/
+		if (exit_check == 1)
+			free_exit(getline_string, head, 2);
 		line_number++;
 		flag = 1;
 	}
