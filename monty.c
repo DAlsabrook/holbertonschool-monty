@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
 	getline_string = get_input(argv[1]);
 	if (!getline_string)
 		free_exit(getline_string, head, 2);
-	printf("Getline_string %s\n", getline_string);
 	/*Find func and store in obj. Then run obj.f*/
 	token = strtok(getline_string, " ");
 	/*line_check = 1*/
