@@ -25,5 +25,4 @@ void free_exit(char *getline_string, stack_t *head, int return_code)
 	}
 	if (return_code == 2)
 		exit(EXIT_FAILURE);
-	return;
 }
