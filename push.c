@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
  * push - push node at the top of the list
- * @stack: stack to use
+ * @head: stack to use
  * @line_number: line number of command
  *
  * Return: void
@@ -20,7 +20,7 @@ void push(stack_t **head, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer", line_number);
 		return;
 	}
-	n = atoi(token);
+	n = atoi(token); /*when fails returns 0 so when no token it prints 0*/
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{

@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
  * get_input - reads each single_line from the file and allocates memory for it
- * @file = file passed in to parse
+ * @file: file passed in to parse
  *
  * Return: string
  */

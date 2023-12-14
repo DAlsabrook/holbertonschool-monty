@@ -3,6 +3,7 @@
  * free_exit - frees all memory and then exits
  * @getline_string: string from getline may need free
  * @head: head to free
+ * @return_code: int to hold return flag
  *
  * Return: void
  */
