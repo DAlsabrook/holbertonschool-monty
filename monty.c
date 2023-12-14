@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		{
 			line_number++;
 			flag = 1;
-			continue;
+			break;
 		}
 		obj.f(&head, line_number);
 		line_number++;

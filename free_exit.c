@@ -1,4 +1,4 @@
-#include "monty.c"
+#include "monty.h"
 /**
  * free_exit - frees all memory and then exits
  * @getline_string: string from getline may need free
@@ -6,13 +6,13 @@
  *
  * Return: void
  */
-void free_exit(char *getline_string, stack_t *head, int i)
+void free_exit(char *getline_string, stack_t *head, int return_code)
 {
 	stack_t *tmp;
 
-	if (getline_string)
+	if (getline_string != NULL)
 		free(getline_string);
-	if (head)
+	if (head != NULL)
 	{
 		while (head->next != NULL)
 		{
@@ -22,7 +22,7 @@ void free_exit(char *getline_string, stack_t *head, int i)
 		}
 		free(head);
 	}
-	if (i == 2)
+	if (return_code == 2)
 		exit(EXIT_FAILURE);
 	return;
 }
