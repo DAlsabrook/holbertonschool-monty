@@ -19,7 +19,7 @@ void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		tok = strtok(NULL, " ");
 	if (tok == NULL)
 	{
-		global = 1;
+		global = 2;
 		return (NULL);
 	}
 	//printf("strcmp Token: |%s|\n", tok);
@@ -33,5 +33,6 @@ void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		i++;
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", global, tok);
+	global = 1;
 	return (NULL);
 }

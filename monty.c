@@ -45,12 +45,14 @@ int main(int argc, char *argv[])
 			obj.f = func_p(token, flag);
 			//printf("Global: %u\n", global);
 			if (global == 1)/*means end of single_line (strtok was NULL)*/
-				break;
+				free_exit(getline_string, head, 2);
 			else if (obj.f == NULL)
 			{
 				flag = 1;
 				continue;
 			}
+			else if (global == 1)
+				break;
 			obj.f(&head, line_number);
 			if (global == 1) /*global 1 if needing to exit from error*/
 				free_exit(getline_string, head, 2);
