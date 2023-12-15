@@ -46,13 +46,13 @@ int main(int argc, char *argv[])
 			//printf("Global: %u\n", global);
 			if (global == 1)/*means end of single_line (strtok was NULL)*/
 				free_exit(getline_string, head, 2);
+			else if (global == 2)
+				break;
 			else if (obj.f == NULL)
 			{
 				flag = 1;
 				continue;
 			}
-			else if (global == 1)
-				break;
 			obj.f(&head, line_number);
 			if (global == 1) /*global 1 if needing to exit from error*/
 				free_exit(getline_string, head, 2);
