@@ -15,7 +15,7 @@ void push(stack_t **head, unsigned int line_number)
 	if (line_number <= 0)
 		return;
 	token = strtok(NULL, " ");
-	if (token == NULL || strcmp(token, "-0") == 0)
+	if (token == NULL || strcmp(token, "-0") == 0 && line_number > 4)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		global = 1;
