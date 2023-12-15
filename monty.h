@@ -42,6 +42,7 @@ typedef struct instruction_s
 extern unsigned int global;
 
 /*prototypes*/
+void nop(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
