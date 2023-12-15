@@ -16,13 +16,7 @@ void push(stack_t **head, unsigned int line_number)
 		return;
 	token = strtok(NULL, " ");
 	printf("token = %s\n", token);
-	if (token == NULL)
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		global = 1;
-		return;
-	}
-	if (strcmp(token, "123a") == 0)
+	if (token == NULL || strcmp(token, "123a") == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		global = 1;
