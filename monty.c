@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 		flag = 0;
 		//printf("Loops end\n\n");
 	}
-	printf("EXIT\n");
+	//printf("EXIT\n");
 	free_exit(getline_string, head, 0);
 	return (0);
 }
