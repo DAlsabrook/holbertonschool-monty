@@ -53,13 +53,10 @@ char *string_clean(char *getline_string)
 {
 	int i;
 
-	if (f == 1)
+	for (i = 0; getline_string[i]; i++)
 	{
-		for (i = 0; getline_string[i]; i++)
-		{
-			if (getline_string[i] == '$')
-				getline_string[i] = ' ';
-		}
+		if (getline_string[i] == '$')
+			getline_string[i] = ' ';
 	}
 	return (getline_string);
 }
