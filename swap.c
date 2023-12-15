@@ -6,7 +6,7 @@
  * 
  * Return: void
 */
-void nop(stack_t **head, unsigned int line_number)
+void swap(stack_t **head, unsigned int line_number)
 {
 	stack_t *tmp, *tmp2;
 

@@ -15,6 +15,7 @@ void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		{"pint", pint},
 		{"pop", pop},
 		{"nop", nop},
+		{"swap", swap},
 		{NULL, NULL}};
 	if (flag == 1)
 		tok = strtok(NULL, " ");
