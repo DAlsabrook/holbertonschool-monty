@@ -19,6 +19,7 @@ void push(stack_t **head, unsigned int line_number)
 	if (token == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		global = 1;
 		return;
 	}
 	n = atoi(token); /*when fails returns 0 so when no token it prints 0*/
