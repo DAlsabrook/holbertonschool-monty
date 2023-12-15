@@ -13,15 +13,11 @@ void free_exit(char *getline_string, stack_t *head, int return_code)
 
 	if (getline_string != NULL)
 		free(getline_string);
-	if (head != NULL)
+	while (head != NULL)
 	{
-		while (head->next != NULL)
-		{
-			tmp = head->next;
-			free(head);
-			head = tmp;
-		}
+		tmp = head->next;
 		free(head);
+		head = tmp;
 	}
 	if (return_code == 2)
 		exit(EXIT_FAILURE);

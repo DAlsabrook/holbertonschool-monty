@@ -10,11 +10,10 @@
 unsigned int global = 0;
 int main(int argc, char *argv[])
 {
-	char *getline_string = NULL, *token, line[100];
-	instruction_t obj;
+	char *getline_string = NULL, line[100];
 	stack_t *head = NULL;
-	int flag = 0, i = 0, j = 0;
-	unsigned int line_number = 0, tmp = 0;
+	int i = 0, j = 0;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
@@ -36,34 +35,14 @@ int main(int argc, char *argv[])
 		line[j] = '\0';
 		j = 0;
 		line_number++;
-		token = strtok(line, " "); /*string = "push\0"*/
-		while (flag != 2)
-		{
-			tmp = global;
-			global = line_number;
-			obj.f = func_p(token, flag);
-			if (tmp != 0)
-				tmp = 0;
-			if (global != line_number)
-			{
-				if (global == 10000)/*means end of single_line (strtok was NULL)*/
-					free_exit(getline_string, head, 2);
-				else if (global == 20000)
-					break;
-				else if (obj.f == NULL)
-				{
-					flag = 1;
-					continue;
-				}
-			}
+		head = execute(line, line_number, head);
+		/*global 10000 if needing to exit from error*/
+		if (global == 10000)
+			free_exit(getline_string, head, 2);
+		/*global 20000 if no command found in line*/
+		else if (global == 20000)
 			global = 0;
-			obj.f(&head, line_number);
-			if (global == 10000) /*global 1 if needing to exit from error*/
-				free_exit(getline_string, head, 2);
-			flag = 2;
-		}
 		line[0] = '\0';
-		flag = 0;
 	}
 	free_exit(getline_string, head, 0);
 	return (0);
