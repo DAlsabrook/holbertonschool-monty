@@ -15,7 +15,8 @@ void push(stack_t **head, unsigned int line_number)
 	if (line_number <= 0)
 		return;
 	token = strtok(NULL, " ");
-	if (!token)
+	//printf("(push) Token: %s\n", token);
+	if (token == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		return;
@@ -33,4 +34,5 @@ void push(stack_t **head, unsigned int line_number)
 	if (*head)
 		(*head)->prev = new_node;
 	*head = new_node;
+	//printf("New node value: %d\n", new_node->n);
 }
