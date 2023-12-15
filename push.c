@@ -15,7 +15,6 @@ void push(stack_t **head, unsigned int line_number)
 	if (line_number <= 0)
 		return;
 	token = strtok(NULL, " ");
-	printf("token = %s\n", token);
 	if (token == NULL || strcmp(token, "123a") == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -23,7 +22,6 @@ void push(stack_t **head, unsigned int line_number)
 		return;
 	}
 	n = atoi(token); /*when fails returns 0 so when no token it prints 0*/
-	printf("n = %d\n", n);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
