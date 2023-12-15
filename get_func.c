@@ -34,7 +34,7 @@ void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		}
 		i++;
 	}
-	fprintf(stderr, "L2: unknown instruction %s\n", tok);
+	fprintf(stderr, "L%u: unknown instruction %s\n",global, tok);
 	global = 1;
 	return (NULL);
 }

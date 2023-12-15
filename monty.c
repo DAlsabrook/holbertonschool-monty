@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	instruction_t obj;
 	stack_t *head = NULL;
 	int flag = 0, i = 0, j = 0;
-	unsigned int line_number = 0;
+	unsigned int line_number = 0, tmp = 0;
 
 	if (argc != 2)
 	{
@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
 		token = strtok(line, " "); /*string = "push\0"*/
 		while (flag != 2)
 		{
+			tmp = global;
+			global = line_number;
 			obj.f = func_p(token, flag);
 			//printf("Global: %u\n", global);
 			if (global == 1)/*means end of single_line (strtok was NULL)*/
