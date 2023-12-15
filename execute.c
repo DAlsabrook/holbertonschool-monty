@@ -1,9 +1,11 @@
 #include "monty.h"
 /**
  * execute - finds function for command and executes
- * 
- * 
- * Return: void
+ * @line: single line from file
+ * @line_number: line number of string
+ * @head: stack to use
+ *
+ * Return: head (to free later)
 */
 stack_t *execute(char *line, unsigned int line_number, stack_t *head)
 {
@@ -12,7 +14,7 @@ stack_t *execute(char *line, unsigned int line_number, stack_t *head)
 	unsigned int tmp;
 	instruction_t obj;
 
-	token = strtok(line, " "); /*string = "push\0"*/
+	token = strtok(line, " ");
 	while (flag != 2)
 	{
 		tmp = global;
@@ -22,7 +24,7 @@ stack_t *execute(char *line, unsigned int line_number, stack_t *head)
 			tmp = 0;
 		if (global != line_number)
 		{
-			if (global >= 10000 )
+			if (global >= 10000)
 				return (head);
 			else if (obj.f == NULL)
 			{
@@ -32,7 +34,7 @@ stack_t *execute(char *line, unsigned int line_number, stack_t *head)
 		}
 		global = 0;
 		obj.f(&head, line_number);
-		if (global == 10000) /*global 1 if needing to exit from error*/
+		if (global == 10000)
 			return (head);
 		flag = 2;
 	}

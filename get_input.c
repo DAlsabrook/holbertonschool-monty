@@ -3,7 +3,7 @@
  * get_input - reads each single_line from the file and allocates memory for it
  * @file: file passed in to parse
  *
- * Return: string
+ * Return: string of all lines from file
  */
 char *get_input(char *file)
 {
@@ -37,7 +37,7 @@ char *get_input(char *file)
 		free(single_line);
 		single_line = NULL;
 	}
-	string_clean(getline_string, 1);
+	string_clean(getline_string);
 	close(file_fd);
 	fclose(opened_file);
 	free(single_line);
@@ -49,7 +49,7 @@ char *get_input(char *file)
  *
  * Return: cleaned string
  */
-char *string_clean(char *getline_string, int f)
+char *string_clean(char *getline_string)
 {
 	int i;
 
@@ -58,14 +58,6 @@ char *string_clean(char *getline_string, int f)
 		for (i = 0; getline_string[i]; i++)
 		{
 			if (getline_string[i] == '$')
-				getline_string[i] = ' ';
-		}
-	}
-	else if (f == 2)
-	{
-		for (i = 0; getline_string[i]; i++)
-		{
-			if (getline_string[i] == '\n')
 				getline_string[i] = ' ';
 		}
 	}

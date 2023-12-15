@@ -9,6 +9,7 @@
 void pop(stack_t **head, unsigned int line_number)
 {
 	stack_t *tmp;
+	
 	if (*head && line_number > 0)
 	{
 		tmp = *head;

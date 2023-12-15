@@ -21,7 +21,7 @@ void push(stack_t **head, unsigned int line_number)
 		global = 10000;
 		return;
 	}
-	n = atoi(token); /*when fails returns 0 so when no token it prints 0*/
+	n = atoi(token);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{

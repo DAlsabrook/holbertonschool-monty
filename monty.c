@@ -20,11 +20,13 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
+	/*get input from file and put all lines in 1 string*/
 	getline_string = get_input(argv[1]);
 	if (!getline_string)
 		free_exit(getline_string, head, 2);
 	while (getline_string[i] != '\0')
 	{
+		/*grab the first line from the file and set to char *line*/
 		while (getline_string[i] != '\n' && getline_string[i])
 		{
 			line[j] = getline_string[i];
@@ -35,6 +37,7 @@ int main(int argc, char *argv[])
 		line[j] = '\0';
 		j = 0;
 		line_number++;
+		/*send line in to be tokenized and ran(if possible)*/
 		head = execute(line, line_number, head);
 		/*global 10000 if needing to exit from error*/
 		if (global == 10000)

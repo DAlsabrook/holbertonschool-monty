@@ -3,7 +3,7 @@
  * pint - prints value at the top of the stack
  * @head: stack to use
  * @line_number: line number
- * 
+ *
  * Return: void
 */
 void pint(stack_t **head, unsigned int line_number)

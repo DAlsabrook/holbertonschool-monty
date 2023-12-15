@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * get_func - get the corresponding function
+ * func_p - get the corresponding function
  * @tok: token
  * @flag: says if we are in loop
  *
@@ -25,17 +25,15 @@ void (*func_p(char *tok, int flag))(stack_t **head, unsigned int line_number)
 		global = 20000;
 		return (NULL);
 	}
-	//printf("strcmp Token: |%s|\n", tok);
 	while (ops[i].opcode)
 	{
 		if (strcmp(ops[i].opcode, tok) == 0)
 		{
-			//printf("Found matching func\n");
 			return (ops[i].f);
 		}
 		i++;
 	}
-	fprintf(stderr, "L%u: unknown instruction %s\n",global, tok);
+	fprintf(stderr, "L%u: unknown instruction %s\n", global, tok);
 	global = 10000;
 	return (NULL);
 }
