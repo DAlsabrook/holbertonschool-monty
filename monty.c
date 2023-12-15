@@ -1,4 +1,5 @@
 #include "monty.h"
+unsigned int global = 0;
 /**
  * main - Program entry point
  * @argc: count of arguments
@@ -6,8 +7,6 @@
  *
  * Return: 0 on success
  */
-
-unsigned int global = 0;
 int main(int argc, char *argv[])
 {
 	char *getline_string = NULL, line[100];
