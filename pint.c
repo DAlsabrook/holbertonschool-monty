@@ -13,6 +13,6 @@ void pint(stack_t **head, unsigned int line_number)
 		printf("%d", (*head)->n);
 		return;
 	}
-	fprintf(stderr, "L%u: can't pint, stack empty", line_number);
+	fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 	global = 1;
 }
