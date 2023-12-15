@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
 	getline_string = get_input(argv[1]);
 	if (!getline_string)
 		free_exit(getline_string, head, 2);
-	//printf("getline: %s", getline_string);/*string = "push 1   push 2 \npush 3 pall \n   push 4    push 5 pall\0"*/
 	while (getline_string[i] != '\0')
 	{
 		while (getline_string[i] != '\n' && getline_string[i])
@@ -37,35 +36,35 @@ int main(int argc, char *argv[])
 		line[j] = '\0';
 		j = 0;
 		line_number++;
-		//printf("Line #%d\n", line_number);
-		//printf("Line after newline loop: |%s|\n", line);
 		token = strtok(line, " "); /*string = "push\0"*/
 		while (flag != 2)
 		{
 			tmp = global;
 			global = line_number;
 			obj.f = func_p(token, flag);
-			//printf("Global: %u\n", global);
-			if (global == 1)/*means end of single_line (strtok was NULL)*/
-				free_exit(getline_string, head, 2);
-			else if (global == 2)
-				break;
-			else if (obj.f == NULL)
+			if (tmp != 0)
+				tmp = 0;
+			if (global != line_number)
 			{
-				flag = 1;
-				continue;
+				if (global == 10000)/*means end of single_line (strtok was NULL)*/
+					free_exit(getline_string, head, 2);
+				else if (global == 20000)
+					break;
+				else if (obj.f == NULL)
+				{
+					flag = 1;
+					continue;
+				}
 			}
+			global = 0;
 			obj.f(&head, line_number);
-			if (global == 1) /*global 1 if needing to exit from error*/
+			if (global == 10000) /*global 1 if needing to exit from error*/
 				free_exit(getline_string, head, 2);
 			flag = 2;
 		}
-		global = 0;
 		line[0] = '\0';
 		flag = 0;
-		//printf("Loops end\n\n");
 	}
-	//printf("EXIT\n");
 	free_exit(getline_string, head, 0);
 	return (0);
 }

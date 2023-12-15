@@ -22,6 +22,6 @@ void pop(stack_t **head, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		global = 1;
+		global = 10000;
 	}
 }
